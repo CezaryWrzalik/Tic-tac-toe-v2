@@ -1,0 +1,16 @@
+.button{
+	background-color: inherit;
+	border: none;
+	font-family: var(--main-font);
+	font-size: 2rem;
+	cursor: pointer;
+	transition: .2s;
+}	
+
+.button p {
+	margin: 0;
+}
+
+.button:hover{
+	color: var(--seondary-font-color)
+}
