@@ -4,18 +4,18 @@ import React, { ElementRef, RefObject, useEffect } from "react";
 const useClickOutside = (
   content: RefObject<HTMLDivElement>,
   closeModal: () => void,
-  modal: any
+  background: RefObject<HTMLDivElement>
 ) => {
   useEffect(() => {
-    const handleClickOuside = (e: React.MouseEvent<HTMLDivElement>) => {
+    const handleClickOuside = (e: MouseEvent) => {
       if (content.current && !content?.current.contains(e.target as HTMLDivElement)) {
         closeModal();
       }
     };
 
-    modal.current.addEventListener("click", handleClickOuside);
+    background.current?.addEventListener("click", handleClickOuside);
     return () => {
-      modal.current?.removeEventListener("click", handleClickOuside);
+      background.current?.removeEventListener("click", handleClickOuside);
     };
   }, [content]);
 };

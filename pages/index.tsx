@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import  Head  from "next/head";
 import Link from "next/link";
 import { useState } from "react";
 import InfoModal from "../components/modal/info-modal";
@@ -10,6 +11,9 @@ const Home: NextPage = () => {
 
   return (
     <div className={classes.main}>
+      <Head>
+        <title>Tic tac toe | HOME</title>
+      </Head>
       <Link href="/singleplayer"><a><UiButton>SINGLEPLAYER</UiButton></a></Link>
       <UiButton>MULTIPLAYER</UiButton>
       <UiButton>
