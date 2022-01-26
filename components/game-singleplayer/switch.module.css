@@ -1,0 +1,24 @@
+.switchBackground {
+	background-color: var(--main-font-color);
+	cursor: pointer;
+}
+
+.switchGrid {
+	display: flex;
+	flex-direction: column;
+	gap: var(--size-025);
+
+}
+
+.svgContainer{
+	background-color: var(--main-bg-color);
+	width: var(--size-6);
+	height: var(--size-6);
+	padding: 10px;
+}
+
+@media (max-width: 600px){
+	.switchGrid{
+		flex-direction: row;
+	}
+}

@@ -1,0 +1,12 @@
+.field{
+	background-color: var(--main-bg-color);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.field svg {
+	height: 90%;
+	width: 90%;
+	fill: var(--main-font-color)
+}

@@ -16,14 +16,33 @@
 .header h1 {
 	margin: 0;
 	font-weight: 400;
+
+	font-size: var(--size-3)
 }
 
 .main{
 	height: 80%;
+
 }
 
 .footer {
 	height: 10%;
 	text-align: center;
 	min-height: 50px;
+
+}
+
+@media (max-height: 850px){
+	.main{
+		height: 90%;
+	}
+
+	.footer{
+		height: 20px;
+		min-height: 20px;
+		position: absolute;
+		bottom: 0;
+		left: 50%;
+		transform: translate(-50%, 0);
+	}
 }

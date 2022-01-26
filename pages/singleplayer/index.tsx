@@ -1,11 +1,8 @@
 import { NextPage } from "next";
+import Game from "../../components/game-singleplayer/game";
 
 const SinglePlayerPage: NextPage = () => {
-  return (
-    <div>
-      <div></div>
-    </div>
-  );
+  return <Game />;
 };
 
 export default SinglePlayerPage;
