@@ -1,25 +1,29 @@
-import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { winnerState } from "../../atom/winnerAtom";
+import CircleIcon from "../icons/circle-icon";
+import CrossIcon from "../icons/cross-icon";
+
+import classes from "./header.module.css";
 
 const Header = () => {
   const [winner, setWinner] = useRecoilState(winnerState);
-  const [header, setHeader] = useState("TIC TAC TOE");
 
-  useEffect(() => {
-    if (winner === "") {
-      setHeader("TIC TAC TOE");
-    } else if (winner === "o") {
-      setHeader("O WINS");
-    } else if (winner === "x") {
-      setHeader("X WINS");
-    } else {
-      setHeader("DRAW");
-			
-		}
-  }, [winner]);
+  console.log(winner);
 
-  return <h1>{header}</h1>;
+  if (winner === "o" || winner === "x") {
+    return (
+      <div className={classes.header}>
+        {winner === "o" ? <CircleIcon /> : <CrossIcon />}
+        <h1>WINS</h1>
+      </div>
+    );
+  }
+
+  if(winner === "DRAW"){
+    return <h1>DRAW</h1>
+  }
+
+  return <h1>TIC TAC TOE</h1>
 };
 
 export default Header;

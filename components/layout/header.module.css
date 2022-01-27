@@ -1,0 +1,13 @@
+.header{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 20px;
+	/* font-size: 40px; */
+}
+
+
+
+.header svg{
+	height: 3rem;
+}
