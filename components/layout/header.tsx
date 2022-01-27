@@ -7,7 +7,6 @@ const Header = () => {
   const [header, setHeader] = useState("TIC TAC TOE");
 
   useEffect(() => {
-		console.log(winner)
     if (winner === "") {
       setHeader("TIC TAC TOE");
     } else if (winner === "o") {
