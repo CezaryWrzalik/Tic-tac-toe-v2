@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import Board from "./board";
 import { winnerState } from "../../atom/winnerAtom";
-
-import classes from "./game.module.css";
 import Switch from "./switch";
 import UiButton from "../ui/ui-button";
 import { useRecoilState } from "recoil";
 import { checkIfMovesLeft, checkIfWinner } from "../../lib/game";
-import Head from "next/head";
 import UiPreviousPage from "../ui/ui-previouspage";
+
+import classes from "./game.module.css";
 
 const Game = () => {
   const [boardState, setBoardState] = useState([
@@ -204,11 +203,8 @@ const Game = () => {
 
   return (
     <div className={classes.gameContainer}>
-      <UiPreviousPage href="/"/>
+      <UiPreviousPage href="/" />
       <div className={classes.gameGrid}>
-        <Head>
-          <title>TIC TAC TOE | Singleplayer</title>
-        </Head>
         <div className={classes.switchContainer}>
           <p>TURN</p>
           <Switch
