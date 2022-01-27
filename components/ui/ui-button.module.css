@@ -3,6 +3,7 @@
   background-color: inherit;
   border: none;
   font-family: var(--main-font);
+	color: var(--main-font-color);
   font-size: 2rem;
   cursor: pointer;
   transition: 0.2s;
@@ -14,6 +15,7 @@
 }
 
 .button p {
+	font-size: 2rem;
   margin: 0;
 }
 

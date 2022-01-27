@@ -33,9 +33,6 @@
 }
 
 @media (max-height: 850px){
-	.main{
-		height: 90%;
-	}
 
 	.footer{
 		height: 20px;

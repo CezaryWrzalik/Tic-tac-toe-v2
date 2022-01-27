@@ -1,6 +1,3 @@
-import { Fragment } from "react";
-import { useRecoilState } from "recoil";
-import { winnerState } from "../../atom/winnerAtom";
 import Header from "./header";
 
 import classes from "./layout.module.css";
@@ -10,7 +7,6 @@ type LayoutProps = {
 };
 
 const Layout = ({ children }: LayoutProps) => {
-  const winner = useRecoilState(winnerState);
 
   return (
     <div className={classes.layout}>
