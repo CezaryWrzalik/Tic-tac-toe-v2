@@ -1,5 +1,6 @@
 import CircleIcon from "../icons/circle-icon";
 import CrossIcon from "../icons/cross-icon";
+
 import classes from "./field.module.css";
 
 type fieldProps = {
@@ -13,8 +14,6 @@ const Field = (props: fieldProps) => {
   const handleClick = () => {
     if (props.fieldValue === "_") {
       props.handlePlayerMove(props.arrayXIndex, props.arrayYIndex);
-    } else {
-      console.log("field alredy taken");
     }
   };
 

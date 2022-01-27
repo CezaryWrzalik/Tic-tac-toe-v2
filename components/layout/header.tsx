@@ -8,8 +8,6 @@ import classes from "./header.module.css";
 const Header = () => {
   const [winner, setWinner] = useRecoilState(winnerState);
 
-  console.log(winner);
-
   if (winner === "o" || winner === "x") {
     return (
       <div className={classes.header}>
