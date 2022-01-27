@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Board from "./board";
 import { winnerState } from "../../atom/winnerAtom";
 
@@ -6,6 +6,9 @@ import classes from "./game.module.css";
 import Switch from "./switch";
 import UiButton from "../ui/ui-button";
 import { useRecoilState } from "recoil";
+import { checkIfMovesLeft, checkIfWinner } from "../../lib/game";
+import Head from "next/head";
+import UiPreviousPage from "../ui/ui-previouspage";
 
 const Game = () => {
   const [boardState, setBoardState] = useState([
@@ -16,105 +19,41 @@ const Game = () => {
   const [gameStarted, setGameStarted] = useState(false);
   const [gameFinished, setGameFinished] = useState(false);
   const [currentTurn, setCurrentTurn] = useState("x");
-  const [playerMark, setPlayerMark] = useState("x");
-  const [oponentMark, SetOponentMark] = useState("o");
+  const [player, setPlayer] = useState("x");
+  const [oponent, setOponent] = useState("o");
   const [winner, setWinner] = useRecoilState(winnerState);
-
-  const [playerFirst, setPlayerFirst] = useState(true);
 
   const [isAgainstAi, setIsAgainstAi] = useState(false);
   const [isXCurrentMove, setIsXCurrentMove] = useState(true);
 
-  const handleStartGame = () => {
+  //Starting game locks settings
+
+  const startGame = () => {
     setGameStarted(true);
   };
 
-  const handleCurrentPlayerChange = () => {
+  //Just turn
+
+  const turnChange = () => {
     const updatedMark = currentTurn === "x" ? "o" : "x";
 
-    setCurrentTurn(updatedMark);
     setIsXCurrentMove(!isXCurrentMove);
+    return setCurrentTurn(updatedMark);
   };
 
-  const handleCheckIfWinner = () => {
-
-    //check for winning in rows
-    for (let row = 0; row <= 2; row++) {
-      if (
-        boardState[row][0] === boardState[row][1] &&
-        boardState[row][1] === boardState[row][2]
-      ) {
-        if (boardState[row][0] === playerMark) {
-          return -10;
-        } else if (boardState[row][0] === oponentMark) {
-          return 10;
-        }
-      }
-    }
-
-    //check for winning in columns
-    for (let col = 0; col <= 2; col++) {
-      if (
-        boardState[0][col] === boardState[1][col] &&
-        boardState[1][col] === boardState[2][col]
-      ) {
-        if (boardState[0][col] === playerMark) {
-          return -10;
-        } else if (boardState[0][col] === oponentMark) {
-          return 10;
-        }
-      }
-    }
-
-    //check for winning in Diagonals
-    if (
-      boardState[0][0] === boardState[1][1] &&
-      boardState[0][0] === boardState[2][2]
-    ) {
-      if (boardState[0][0] === playerMark) {
-        return -10;
-      } else if (boardState[0][0] === oponentMark) {
-        return 10;
-      }
-    }
-    if (
-      boardState[0][2] === boardState[1][1] &&
-      boardState[0][2] === boardState[2][0]
-    ) {
-      if (boardState[0][2] === playerMark) {
-        return -10;
-      } else if (boardState[0][2] === oponentMark) {
-        return 10;
-      }
-    }
-
-    return 0;
-  };
-
-  const handleCheckIfMovesLeft = () => {
-    for (let row = 0; row <= 2; row++) {
-      for (let col = 0; col <= 2; col++) {
-        if (boardState[row][col] === "_") {
-          return true;
-        }
-      }
-    }
-    return false;
-  };
-
-  const handleCheckIfFinished = () => {
-    const winner = handleCheckIfWinner();
+  const checkIfFinished = () => {
+    const winner = checkIfWinner(boardState, player, oponent);
 
     if (winner !== 0) {
       setGameFinished(true);
-      if (winner === 10) {
-        return setWinner(oponentMark);
-      } else if (winner === -10) {
-        return setWinner(playerMark);
+      if (winner === 1) {
+        return setWinner(oponent);
+      } else if (winner === -1) {
+        return setWinner(player);
       }
     }
 
-    const isMovesLeft = handleCheckIfMovesLeft();
+    const isMovesLeft = checkIfMovesLeft(boardState);
 
     if (!isMovesLeft) {
       setGameFinished(true);
@@ -124,23 +63,122 @@ const Game = () => {
     return false;
   };
 
+  const minimax = (
+    board: string[][],
+    depth: number,
+    isMax: boolean
+  ): number => {
+    const score = checkIfWinner(board, player, oponent);
+
+    if (score == 1) {
+      return score;
+    }
+
+    if (score == -1) {
+      return score;
+    }
+
+    const movesLeft = checkIfMovesLeft(board);
+
+    if (!movesLeft) {
+      return 0;
+    }
+
+    if (isMax) {
+      let value = -10;
+
+      for (let row = 0; row <= 2; row++) {
+        for (let col = 0; col <= 2; col++) {
+          if (board[row][col] === "_") {
+            board[row][col] = oponent;
+
+            value = Math.max(value, minimax(board, depth + 1, !isMax));
+
+            board[row][col] = "_";
+          }
+        }
+      }
+      return value;
+    } else {
+      let value = 10;
+
+      for (let row = 0; row <= 2; row++) {
+        for (let col = 0; col <= 2; col++) {
+          if (board[row][col] === "_") {
+            board[row][col] = player;
+
+            value = Math.min(value, minimax(board, depth + 1, !isMax));
+
+            board[row][col] = "_";
+          }
+        }
+      }
+      return value;
+    }
+  };
+
+  const findBestMove = (board: string[][]) => {
+    let val = -10;
+    let bestRowMove = -1;
+    let bestColMove = -1;
+
+    for (let row = 0; row <= 2; row++) {
+      for (let col = 0; col <= 2; col++) {
+        if (board[row][col] === "_") {
+          board[row][col] = oponent;
+
+          let moveVal = minimax(board, 0, false);
+
+          board[row][col] = "_";
+          if (moveVal > val) {
+            bestRowMove = row;
+            bestColMove = col;
+            val = moveVal;
+          }
+        }
+      }
+    }
+    return { bestRowMove, bestColMove };
+  };
+
+  // Letting the ai begin
+
+  const aiStart = () => {
+    if (!gameStarted) {
+      setPlayer("o");
+      setOponent("x");
+    } else {
+      alert("Not available during the game");
+    }
+  };
+
+  // Change into mode against Ai
+
+  const setMode = () => {
+    if (!gameStarted) {
+      setIsAgainstAi(!isAgainstAi);
+    } else {
+      alert("Not available during the game");
+    }
+  };
+
   const handleMove = (x: number, y: number) => {
-    console.log(gameFinished);
     if (gameFinished) {
       return;
     }
     const currentBoard = boardState;
     currentBoard[x][y] = currentTurn;
     setBoardState(currentBoard);
-    const winner = handleCheckIfFinished();
+    checkIfFinished();
 
-    
     if (!gameStarted) {
-      handleStartGame();
+      startGame();
     }
-    
-    handleCurrentPlayerChange();
+
+    turnChange();
   };
+
+  //All Setings to default
 
   const handleRestartGame = () => {
     setBoardState([
@@ -150,28 +188,50 @@ const Game = () => {
     ]);
     setCurrentTurn("x");
     setGameStarted(false);
-    setPlayerFirst(true);
     setIsXCurrentMove(true);
     setGameFinished(false);
     setWinner("");
+    setPlayer("x");
+    setOponent("o");
   };
 
+  useEffect(() => {
+    if (currentTurn === oponent && isAgainstAi) {
+      const bestMove = findBestMove(boardState);
+      handleMove(bestMove.bestRowMove, bestMove.bestColMove);
+    }
+  }, [currentTurn, oponent]);
+
   return (
-    <div className={classes.gameGrid}>
-      <div className={classes.switchContainer}>
-        <p>TURN</p>
-        <Switch switchFor={"turn"} currentOption={isXCurrentMove} />
-      </div>
-      <div className={classes.boardContainer}>
-        <div className={classes.blankForCenter}></div>
-        <Board boardState={boardState} handleMove={handleMove} />
-        <UiButton>
-          <p onClick={handleRestartGame}>Play Again</p>
-        </UiButton>
-      </div>
-      <div className={classes.switchContainer}>
-        <p>MODE</p>
-        <Switch switchFor={"mode"} currentOption={!isAgainstAi} />
+    <div className={classes.gameContainer}>
+      <UiPreviousPage href="/"/>
+      <div className={classes.gameGrid}>
+        <Head>
+          <title>TIC TAC TOE | Singleplayer</title>
+        </Head>
+        <div className={classes.switchContainer}>
+          <p>TURN</p>
+          <Switch
+            switchFor={"turn"}
+            currentOption={isXCurrentMove}
+            func={aiStart}
+          />
+        </div>
+        <div className={classes.boardContainer}>
+          <div className={classes.blankForCenter}></div>
+          <Board boardState={boardState} handleMove={handleMove} />
+          <UiButton>
+            <p onClick={handleRestartGame}>Play Again</p>
+          </UiButton>
+        </div>
+        <div className={classes.switchContainer}>
+          <p>MODE</p>
+          <Switch
+            switchFor={"mode"}
+            currentOption={!isAgainstAi}
+            func={setMode}
+          />
+        </div>
       </div>
     </div>
   );

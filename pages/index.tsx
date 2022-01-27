@@ -15,7 +15,7 @@ const Home: NextPage = () => {
         <title>Tic tac toe | HOME</title>
       </Head>
       <Link href="/singleplayer"><a><UiButton>SINGLEPLAYER</UiButton></a></Link>
-      <UiButton>MULTIPLAYER</UiButton>
+      <UiButton unactive={true}>MULTIPLAYER</UiButton>
       <UiButton>
         <p onClick={() => setModalActive(true)}>INFO</p>
       </UiButton>

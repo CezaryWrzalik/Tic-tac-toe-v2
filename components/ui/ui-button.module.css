@@ -1,17 +1,22 @@
-.button{
-	background-color: inherit;
-	border: none;
-	font-family: var(--main-font);
-	font-size: 2rem;
-	cursor: pointer;
-	transition: .2s;
-}	
-
-.button p {
-	font-size: 2rem;
-	margin: 0;
+.button,
+.unactiveButton {
+  background-color: inherit;
+  border: none;
+  font-family: var(--main-font);
+  font-size: 2rem;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
-.button:hover{
-	color: var(--seondary-font-color)
+.unactiveButton {
+  margin: 0;
+	opacity: .4;
+}
+
+.button p {
+  margin: 0;
+}
+
+.button:hover {
+  color: var(--seondary-font-color);
 }

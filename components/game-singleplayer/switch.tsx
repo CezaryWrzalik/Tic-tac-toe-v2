@@ -8,19 +8,30 @@ import classes from "./switch.module.css";
 type PropsTypes = {
   switchFor: string;
   currentOption: boolean;
+  func: (mode?: boolean) => void;
 };
 
-const Switch = ({ currentOption, switchFor }: PropsTypes) => {
+const Switch = ({ currentOption, switchFor, func }: PropsTypes) => {
+  const handleClick = () => {
+    func();
+  };
+
   return (
     <div className={classes.switchBackground}>
       <div className={classes.switchGrid}>
         <div className={classes.svgContainer}>
-          <div style={{ opacity: `${currentOption ? 1 : 0.6}` }}>
+          <div
+            style={{ opacity: `${currentOption ? 1 : 0.4}` }}
+            onClick={handleClick}
+          >
             {switchFor === "turn" ? <CrossIcon /> : <PersonIcon />}
           </div>
         </div>
         <div className={classes.svgContainer}>
-          <div style={{ opacity: `${!currentOption ? 1 : 0.4}` }}>
+          <div
+            style={{ opacity: `${!currentOption ? 1 : 0.4}` }}
+            onClick={handleClick}
+          >
             {switchFor === "turn" ? <CircleIcon /> : <ComputerIcon />}
           </div>
         </div>
