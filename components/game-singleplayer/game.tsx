@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import Board from "./board";
+import { useRecoilState } from "recoil";
 import { winnerState } from "../../atom/winnerAtom";
+import Board from "./board";
 import Switch from "./switch";
 import UiButton from "../ui/ui-button";
-import { useRecoilState } from "recoil";
-import { checkIfMovesLeft, checkIfWinner } from "../../lib/game";
 import UiPreviousPage from "../ui/ui-previouspage";
+import { checkIfMovesLeft, evaluate } from "../../lib/evaluation";
+import { findBestMove } from "../../lib/minimax";
 
 import classes from "./game.module.css";
 
@@ -19,7 +20,7 @@ const Game = () => {
   const [gameFinished, setGameFinished] = useState(false);
   const [currentTurn, setCurrentTurn] = useState("x");
   const [player, setPlayer] = useState("x");
-  const [oponent, setOponent] = useState("o");
+  const [opponent, setOpponent] = useState("o");
   const [winner, setWinner] = useRecoilState(winnerState);
 
   const [isAgainstAi, setIsAgainstAi] = useState(false);
@@ -41,111 +42,30 @@ const Game = () => {
   };
 
   const checkIfFinished = () => {
-    const winner = checkIfWinner(boardState, player, oponent);
+    const winner = evaluate(boardState, player, opponent);
 
     if (winner !== 0) {
       setGameFinished(true);
-      if (winner === 1) {
-        return setWinner(oponent);
-      } else if (winner === -1) {
+      if (winner === 10) {
+        return setWinner(opponent);
+      } else if (winner === -10) {
         return setWinner(player);
       }
     }
 
     const isMovesLeft = checkIfMovesLeft(boardState);
-
     if (!isMovesLeft) {
       setGameFinished(true);
       return setWinner("DRAW");
     }
-
+    
     return false;
   };
-
-  const minimax = (
-    board: string[][],
-    depth: number,
-    isMax: boolean
-  ): number => {
-    const score = checkIfWinner(board, player, oponent);
-
-    if (score == 1) {
-      return score;
-    }
-
-    if (score == -1) {
-      return score;
-    }
-
-    const movesLeft = checkIfMovesLeft(board);
-
-    if (!movesLeft) {
-      return 0;
-    }
-
-    if (isMax) {
-      let value = -10;
-
-      for (let row = 0; row <= 2; row++) {
-        for (let col = 0; col <= 2; col++) {
-          if (board[row][col] === "_") {
-            board[row][col] = oponent;
-
-            value = Math.max(value, minimax(board, depth + 1, !isMax));
-
-            board[row][col] = "_";
-          }
-        }
-      }
-      return value;
-    } else {
-      let value = 10;
-
-      for (let row = 0; row <= 2; row++) {
-        for (let col = 0; col <= 2; col++) {
-          if (board[row][col] === "_") {
-            board[row][col] = player;
-
-            value = Math.min(value, minimax(board, depth + 1, !isMax));
-
-            board[row][col] = "_";
-          }
-        }
-      }
-      return value;
-    }
-  };
-
-  const findBestMove = (board: string[][]) => {
-    let val = -10;
-    let bestRowMove = -1;
-    let bestColMove = -1;
-
-    for (let row = 0; row <= 2; row++) {
-      for (let col = 0; col <= 2; col++) {
-        if (board[row][col] === "_") {
-          board[row][col] = oponent;
-
-          let moveVal = minimax(board, 0, false);
-
-          board[row][col] = "_";
-          if (moveVal > val) {
-            bestRowMove = row;
-            bestColMove = col;
-            val = moveVal;
-          }
-        }
-      }
-    }
-    return { bestRowMove, bestColMove };
-  };
-
-  // Letting the ai begin
 
   const aiStart = () => {
     if (!gameStarted) {
       setPlayer("o");
-      setOponent("x");
+      setOpponent("x");
     } else {
       alert("Not available during the game");
     }
@@ -167,6 +87,7 @@ const Game = () => {
     }
     const currentBoard = boardState;
     currentBoard[x][y] = currentTurn;
+
     setBoardState(currentBoard);
     checkIfFinished();
 
@@ -191,15 +112,16 @@ const Game = () => {
     setGameFinished(false);
     setWinner("");
     setPlayer("x");
-    setOponent("o");
+    setOpponent("o");
   };
 
   useEffect(() => {
-    if (currentTurn === oponent && isAgainstAi) {
-      const bestMove = findBestMove(boardState);
+    if (currentTurn === opponent && isAgainstAi) {
+      const bestMove = findBestMove(boardState, player, opponent);
+
       handleMove(bestMove.bestRowMove, bestMove.bestColMove);
     }
-  }, [currentTurn, oponent]);
+  }, [currentTurn, opponent]);
 
   return (
     <div className={classes.gameContainer}>
