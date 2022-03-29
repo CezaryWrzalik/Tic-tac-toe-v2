@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import  Head  from "next/head";
+import Head from "next/head";
 import Link from "next/link";
 import { useState } from "react";
 import InfoModal from "../components/modal/info-modal";
@@ -14,13 +14,26 @@ const Home: NextPage = () => {
       <Head>
         <title>Tic tac toe | HOME</title>
       </Head>
-      <Link href="/singleplayer"><a><UiButton>SINGLEPLAYER</UiButton></a></Link>
-      <UiButton unactive={true}>MULTIPLAYER</UiButton>
-      <UiButton>
-        <p onClick={() => setModalActive(true)}>INFO</p>
-      </UiButton>
+      <Link href="/singleplayer">
+        <a>
+          <UiButton>SINGLEPLAYER</UiButton>
+        </a>
+      </Link>
+      <Link href="/multiplayer">
+        <a>
+          <UiButton>MULTIPLAYER</UiButton>
+        </a>
+      </Link>
+      <a onClick={() => setModalActive(true)}>
+        <UiButton>
+          INFO
+        </UiButton>
+      </a>
 
-      <InfoModal active={modalActive} disableModal={() => setModalActive(false)}/>
+      <InfoModal
+        active={modalActive}
+        disableModal={() => setModalActive(false)}
+      />
     </div>
   );
 };

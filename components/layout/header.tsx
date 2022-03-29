@@ -17,11 +17,19 @@ const Header = () => {
     );
   }
 
-  if(winner === "DRAW"){
-    return <h1>DRAW</h1>
+  if (winner === "DRAW") {
+    return (
+      <div className={classes.header}>
+        <h1>DRAW</h1>
+      </div>
+    );
   }
 
-  return <h1>TIC TAC TOE</h1>
+  return (
+    <div className={classes.header}>
+      <h1>TIC TAC TOE</h1>
+    </div>
+  );
 };
 
 export default Header;

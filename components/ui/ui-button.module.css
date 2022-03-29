@@ -4,7 +4,7 @@
   border: none;
   font-family: var(--main-font);
 	color: var(--main-font-color);
-  font-size: 2rem;
+  font-size: var(--size-15);
   cursor: pointer;
   transition: 0.2s;
 }

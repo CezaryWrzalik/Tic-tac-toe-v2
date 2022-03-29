@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import useClickOutside from "../../helpers/useClickOutside";
+import useClickOutside from "../../hooks/useClickOutside";
 import classes from "./info-modal.module.css";
 
 type InfoModalProps = {

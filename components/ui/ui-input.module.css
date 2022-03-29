@@ -1,0 +1,25 @@
+.container {
+
+}
+
+
+
+.container input {
+	background: inherit;
+	border: none;
+	border-bottom: 1px solid var(--main-font-color);
+	text-align: center;
+	font-size: var(--size-1);
+	margin: 15px 0;
+	padding: 5px;
+}
+
+.container input:focus {
+	outline: none;
+}
+
+@media (max-height: 400px){
+	.container input{
+		margin: 5px 0;
+	}
+}

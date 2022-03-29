@@ -8,9 +8,9 @@ import UiPreviousPage from "../ui/ui-previouspage";
 import { checkIfMovesLeft, evaluate } from "../../lib/evaluation";
 import { findBestMove } from "../../lib/minimax";
 
-import classes from "./game.module.css";
+import classes from "./game-singleplayer.module.css";
 
-const Game = () => {
+const SingleplayerGame = () => {
   const [boardState, setBoardState] = useState([
     ["_", "_", "_"],
     ["_", "_", "_"],
@@ -155,4 +155,4 @@ const Game = () => {
   );
 };
 
-export default Game;
+export default SingleplayerGame;

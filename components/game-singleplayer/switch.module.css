@@ -12,8 +12,8 @@
 
 .svgContainer{
 	background-color: var(--main-bg-color);
-	width: var(--size-6);
-	height: var(--size-6);
+	width: var(--size-4);
+	height: var(--size-4);
 	padding: 10px;
 }
 

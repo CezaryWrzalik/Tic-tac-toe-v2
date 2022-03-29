@@ -30,9 +30,9 @@
 }
 
 .switchContainer p {
-  font-size: var(--size-3);
+  font-size: var(--size-2);
   margin: 0;
-  margin-top: calc(var(--size-3) * -1);
+  margin-top: calc(var(--size-2) * -1);
 }
 
 @media (max-width: 600px) {
