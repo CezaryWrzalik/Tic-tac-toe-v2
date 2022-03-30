@@ -1,10 +1,9 @@
 import { signOut, useSession } from "next-auth/react";
 import UiPreviousPage from "../../ui/ui-previouspage";
-import { GamesGrid, LobbyContainer, LogoutButton, PageTitle, WelcomeMessage } from "./lobby.styled";
+import { GamesGrid, LobbyContainer, LogoutButton, PageTitle  } from "./lobby.styled";
 import Sidebar from "./sidebar";
 
 const Lobby = () => {
-  const { data: session } = useSession();
   return (
     <>
       <UiPreviousPage href="/" />
