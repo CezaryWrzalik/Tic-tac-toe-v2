@@ -8,7 +8,7 @@ export default NextAuth({
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        username: { label: "Username", type: "text", placeholder: "jsmith" },
+        user: { label: "Username", type: "text", placeholder: "jsmith" },
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials, req) {
@@ -20,9 +20,15 @@ export default NextAuth({
           throw new Error("Something went wrong!");
         }
 
-        const user = await usersCollection.findOne({
-          username: credentials.username,
+        let user = await usersCollection.findOne({
+          username: credentials.user,
         });
+
+        if (!user) {
+          user = await usersCollection.findOne({
+            email: credentials.user,
+          });
+        }
 
         if (!user) {
           throw new Error("No user found"!);
@@ -47,7 +53,20 @@ export default NextAuth({
       },
     }),
   ],
-  pages: {
-    signIn: "/signin",
+  callbacks: {
+    async session({ session }) {
+
+      const client = await connectToDatabase();
+
+      const usersCollection = client.db().collection("users");
+
+      const user = await usersCollection.findOne({
+        email: session.user.email,
+      });
+
+      session.user.username = user?.username;
+
+      return session;
+    },
   },
 });

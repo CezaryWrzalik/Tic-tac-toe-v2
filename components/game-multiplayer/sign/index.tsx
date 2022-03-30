@@ -1,14 +1,24 @@
 import { useState } from "react";
-import classes from './index.module.css'
+import { SignContainer } from "./sign.styled";
+import SignIn from "./signIn";
 import SignUp from "./signUp";
 
+export type ToggleType = {
+	toggle: () => void;
+}
+
 const Sign = () => {
-	const [isResiter, setIsRegister] = useState(true);
+	const [isRegister, setIsRegister] = useState(false);
+
+	const toggleRegister = () => {
+		setIsRegister(!isRegister);
+	}
 	
 	return(
-		<div className={classes.signContainer}>
-			{isResiter && <SignUp />}
-		</div>
+		<SignContainer>
+			{isRegister && <SignUp toggle={toggleRegister}/>}
+			{!isRegister && <SignIn toggle={toggleRegister}/>}
+		</SignContainer>
 	)
 }
 

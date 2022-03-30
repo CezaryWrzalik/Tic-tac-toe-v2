@@ -1,5 +1,5 @@
 import { useRecoilState } from "recoil";
-import { winnerState } from "../../atom/winnerAtom";
+import { winnerState } from "../../atom/notificationState";
 import CircleIcon from "../icons/circle-icon";
 import CrossIcon from "../icons/cross-icon";
 

@@ -12,7 +12,7 @@
 .container svg {
   height: 30px;
   fill: var(--main-font-color);
-  transition: 0.4s;
+  transition: 0.5s;
 }
 
 @media (min-width: 850px) {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
-import { winnerState } from "../../atom/winnerAtom";
+import { winnerState } from "../../atom/notificationState";
 import Board from "./board";
 import Switch from "./switch";
 import UiButton from "../ui/ui-button";
