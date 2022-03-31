@@ -1,7 +1,8 @@
 import UiNotification from "../ui/ui-notification";
-import Header from "./header";
+import Header from "./Header";
+import { Typography } from "../typography";
+import { Footer, LayoutContainer, Main } from "./Layout.styled";
 
-import classes from "./layout.module.css";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -10,14 +11,14 @@ type LayoutProps = {
 const Layout = ({ children }: LayoutProps) => {
   return (
     <>
-      <div className={classes.layout}>
-        <UiNotification />
-        <header className={classes.header}>
-          <Header />
-        </header>
-        <div className={classes.main}>{children}</div>
-        <footer className={classes.footer}>by Cezary Wrzalik</footer>
-      </div>
+      <UiNotification />
+      <LayoutContainer>
+        <Header />
+        <Main>{children}</Main>
+        <Footer>
+          <Typography.Text_16>by Cezary Wrzalik</Typography.Text_16>
+        </Footer>
+      </LayoutContainer>
     </>
   );
 };

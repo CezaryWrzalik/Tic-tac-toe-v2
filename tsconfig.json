@@ -15,6 +15,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/game-singleplayer/game.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/game-singleplayer/game.js", "components/layout/Layout.styledts"],
   "exclude": ["node_modules"]
 }

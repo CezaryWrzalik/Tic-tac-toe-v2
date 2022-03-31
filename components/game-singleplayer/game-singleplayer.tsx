@@ -1,14 +1,20 @@
 import { useEffect, useState } from "react";
-import { useRecoilState } from "recoil";
-import { winnerState } from "../../atom/notificationState";
-import Board from "./board";
-import Switch from "./switch";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { notificationState, winnerState } from "../../atom/notificationState";
+import Board from "./Board";
+import Switch from "./Switch";
 import UiButton from "../ui/ui-button";
-import UiPreviousPage from "../ui/ui-previouspage";
-import { checkIfMovesLeft, evaluate } from "../../lib/evaluation";
-import { findBestMove } from "../../lib/minimax";
+import UiPreviousPage from "../ui/Ui-Previouspage";
+import { checkIfMovesLeft, evaluate } from "../../utils/evaluation";
+import { findBestMove } from "../../utils/minimax";
 
-import classes from "./game-singleplayer.module.css";
+import {
+  BoardContainer,
+  RestartContainer,
+  SingleplayerContainer,
+  SwitchContainer,
+} from "./Game-singleplayer.styled";
+import { Typography } from "../typography";
 
 const SingleplayerGame = () => {
   const [boardState, setBoardState] = useState([
@@ -21,7 +27,9 @@ const SingleplayerGame = () => {
   const [currentTurn, setCurrentTurn] = useState("x");
   const [player, setPlayer] = useState("x");
   const [opponent, setOpponent] = useState("o");
-  const [winner, setWinner] = useRecoilState(winnerState);
+  const setWinner = useSetRecoilState(winnerState);
+  const setNotification = useSetRecoilState(notificationState);
+
 
   const [isAgainstAi, setIsAgainstAi] = useState(false);
   const [isXCurrentMove, setIsXCurrentMove] = useState(true);
@@ -58,16 +66,17 @@ const SingleplayerGame = () => {
       setGameFinished(true);
       return setWinner("DRAW");
     }
-    
+
     return false;
   };
 
   const aiStart = () => {
+    console.log("hhhh");
     if (!gameStarted) {
       setPlayer("o");
       setOpponent("x");
     } else {
-      alert("Not available during the game");
+      setNotification("Not available during the game");
     }
   };
 
@@ -77,7 +86,7 @@ const SingleplayerGame = () => {
     if (!gameStarted) {
       setIsAgainstAi(!isAgainstAi);
     } else {
-      alert("Not available during the game");
+      setNotification("Not available during the game");
     }
   };
 
@@ -124,34 +133,33 @@ const SingleplayerGame = () => {
   }, [currentTurn, opponent]);
 
   return (
-    <div className={classes.gameContainer}>
+    <>
       <UiPreviousPage href="/" />
-      <div className={classes.gameGrid}>
-        <div className={classes.switchContainer}>
-          <p>TURN</p>
+      <SingleplayerContainer>
+        <SwitchContainer side="left">
+          <Typography.Text_32>TURN</Typography.Text_32>
           <Switch
             switchFor={"turn"}
             currentOption={isXCurrentMove}
             func={aiStart}
           />
-        </div>
-        <div className={classes.boardContainer}>
-          <div className={classes.blankForCenter}></div>
+        </SwitchContainer>
+        <BoardContainer>
           <Board boardState={boardState} handleMove={handleMove} />
-          <UiButton>
-            <p onClick={handleRestartGame}>Play Again</p>
-          </UiButton>
-        </div>
-        <div className={classes.switchContainer}>
-          <p>MODE</p>
+        <RestartContainer>
+          <UiButton click={handleRestartGame}>Play Again</UiButton>
+        </RestartContainer>
+        </BoardContainer>
+        <SwitchContainer side="right">
+          <Typography.Text_32>MODE</Typography.Text_32>
           <Switch
             switchFor={"mode"}
             currentOption={!isAgainstAi}
             func={setMode}
           />
-        </div>
-      </div>
-    </div>
+        </SwitchContainer>
+      </SingleplayerContainer>
+    </>
   );
 };
 

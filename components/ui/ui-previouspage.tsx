@@ -1,19 +1,20 @@
 import Link from "next/link";
 import ArrowIcon from "../icons/arrow-icon";
-
-import classes from "./ui-previouspage.module.css";
+import { UiPreviousPageContainer } from "./ui-previouspage.styled";
 
 type PropsTypes = {
-	href: string;
-}
+  href: string;
+};
 
-const UiPreviousPage = ({href}: PropsTypes) => {
+const UiPreviousPage = ({ href }: PropsTypes) => {
   return (
-    <Link href={href}>
-      <div className={classes.container}>
-        <ArrowIcon />
-      </div>
-    </Link>
+    <UiPreviousPageContainer>
+      <Link href={href}>
+        <a href="">
+          <ArrowIcon />
+        </a>
+      </Link>
+    </UiPreviousPageContainer>
   );
 };
 

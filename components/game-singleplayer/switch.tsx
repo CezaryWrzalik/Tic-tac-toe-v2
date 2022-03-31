@@ -1,9 +1,5 @@
-import { useState } from "react";
-import CircleIcon from "../icons/circle-icon";
-import ComputerIcon from "../icons/computer-icon";
-import CrossIcon from "../icons/cross-icon";
-import PersonIcon from "../icons/person-icon";
-import classes from "./switch.module.css";
+import { CircleIcon, ComputerIcon, CrossIcon, PersonIcon } from "../icons";
+import { SvgContainer, SwitchContainer, SwitchFlex } from "./Switch.styled";
 
 type PropsTypes = {
   switchFor: string;
@@ -17,26 +13,16 @@ const Switch = ({ currentOption, switchFor, func }: PropsTypes) => {
   };
 
   return (
-    <div className={classes.switchBackground}>
-      <div className={classes.switchGrid}>
-        <div className={classes.svgContainer}>
-          <div
-            style={{ opacity: `${currentOption ? 1 : 0.4}` }}
-            onClick={handleClick}
-          >
-            {switchFor === "turn" ? <CrossIcon /> : <PersonIcon />}
-          </div>
-        </div>
-        <div className={classes.svgContainer}>
-          <div
-            style={{ opacity: `${!currentOption ? 1 : 0.4}` }}
-            onClick={handleClick}
-          >
-            {switchFor === "turn" ? <CircleIcon /> : <ComputerIcon />}
-          </div>
-        </div>
-      </div>
-    </div>
+    <SwitchContainer>
+      <SwitchFlex>
+        <SvgContainer selected={currentOption} onClick={handleClick}>
+          {switchFor === "turn" ? <CrossIcon /> : <PersonIcon />}
+        </SvgContainer>
+        <SvgContainer selected={!currentOption} onClick={handleClick}>
+          {switchFor === "turn" ? <CircleIcon /> : <ComputerIcon />}
+        </SvgContainer>
+      </SwitchFlex>
+    </SwitchContainer>
   );
 };
 

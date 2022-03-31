@@ -1,6 +1,11 @@
-import { useEffect, useRef } from "react";
-import useClickOutside from "../../hooks/useClickOutside";
-import classes from "./info-modal.module.css";
+import { CrossIcon } from "../icons";
+import useClickOutside from "../../utils/hooks/useClickOutside";
+import { useEffect, useRef, useState } from "react";
+import {
+  CloseCotnainer,
+  ContentContainer,
+  ModalContainer,
+} from "./info-modal.styled";
 
 type InfoModalProps = {
   active: boolean;
@@ -8,37 +13,37 @@ type InfoModalProps = {
 };
 
 const InfoModal = ({ active, disableModal }: InfoModalProps) => {
+  const [isOpen, setIsOpen] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
-	
   const openModal = () => {
-		const modal = modalRef.current;
-		modal?.classList.add(classes.modalActive);
+    setIsOpen(true);
   };
-	
-	const closeModal = () => {
-		const modal = modalRef.current;
-		modal?.classList.remove(classes.modalActive);
-		disableModal()
-	}
 
-	useClickOutside(contentRef, closeModal, modalRef)
+  const closeModal = () => {
+    setIsOpen(false);
+    disableModal();
+  };
+
+  useClickOutside(contentRef, closeModal, modalRef);
 
   useEffect(() => {
     if (active) {
       openModal();
     } else {
-			closeModal();
-		}
+      closeModal();
+    }
   }, [active]);
 
-	
   return (
-    <div className={classes.modal} ref={modalRef}>
-      <div className={classes.content} ref={contentRef}>
-      </div>
-    </div>
+    <ModalContainer opened={isOpen} ref={modalRef}>
+      <ContentContainer ref={contentRef}>
+        <CloseCotnainer onClick={() => closeModal()}>
+          <CrossIcon />
+        </CloseCotnainer>
+      </ContentContainer>
+    </ModalContainer>
   );
 };
 

@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { hashPassword } from "../../../lib/auth";
-import { connectToDatabase } from "../../../lib/db";
+import { hashPassword } from "../../../utils/auth";
+import { connectToDatabase } from "../../../utils/db";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "POST") {

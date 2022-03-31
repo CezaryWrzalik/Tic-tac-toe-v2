@@ -1,5 +1,6 @@
 import React from "react";
 import classes from './ui-input.module.css'
+import { UiInputContainer } from "./Ui-Input.styled";
 
 type PropsType = {
 	name: string;
@@ -8,9 +9,7 @@ type PropsType = {
 
 const UiTextInput = React.forwardRef<HTMLInputElement, PropsType>((props, ref) => {
   return (
-    <div className={classes.container}>
-      <input ref={ref} type={props.type} placeholder={props.name}/>
-    </div>
+      <UiInputContainer ref={ref} type={props.type} placeholder={props.name}/>
   );
 });
 UiTextInput.displayName = "UiInputName";

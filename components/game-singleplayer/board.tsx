@@ -1,6 +1,5 @@
-import Field from "./field";
-
-import classes from "./board.module.css";
+import Field from "./Field";
+import { BoardContainer, BoardGrid } from "./Board.styled";
 
 type PropsType = {
   boardState: string[][];
@@ -9,21 +8,21 @@ type PropsType = {
 
 const Board = ({ boardState, handleMove }: PropsType) => {
   return (
-    <div className={classes.boardBackground}>
-      <div className={classes.boardGrid}>
+    <BoardContainer>
+      <BoardGrid>
         {boardState.map((row, i) =>
           row.map((fieldValue, j) => (
               <Field
                 fieldValue={fieldValue}
                 arrayXIndex={i}
                 arrayYIndex={j}
-								handlePlayerMove={handleMove}
+								handleMove={handleMove}
                 key={Math.random()}
               />
           ))
         )}
-      </div>
-    </div>
+      </BoardGrid>
+    </BoardContainer>
   );
 };
 

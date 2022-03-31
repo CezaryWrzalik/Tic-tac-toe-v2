@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { connectToDatabase } from "../../../../lib/db";
+import { connectToDatabase } from "../../../../utils/db";
 import _ from 'lodash';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
