@@ -3,7 +3,7 @@ export const palette = {
 	black: '#313638',
 	orange: '#db9614',
   gray_transparent: 'rgba(184, 184, 184, 0.8)',
-  gray_dark_transparent: 'rgba(150, 150, 150, 0.8)'
+  gray_dark_transparent: 'rgba(150, 150, 150, 0.4)'
 };
 
 export const global = {
@@ -19,8 +19,6 @@ export const global = {
   },
   fontWeight: {
     regular: 400,
-    medium: 500,
-    semi: 600,
     bold: 700,
   },
   transitions: {

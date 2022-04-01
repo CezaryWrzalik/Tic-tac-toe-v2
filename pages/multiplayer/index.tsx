@@ -1,7 +1,7 @@
-import { signIn, useSession } from "next-auth/react";
+import { getSession, GetSessionParams } from "next-auth/react";
+import { ContextType } from "react";
 import styled from "styled-components";
-import Lobby from "../../components/game-multiplayer/lobby/lobby";
-import Sign from "../../components/auth";
+import Lobby from "../../components/game-multiplayer/lobby/Lobby";
 import UiPreviousPage from "../../components/ui/Ui-Previouspage";
 
 const MultiplayerPageContainer = styled.div`
@@ -10,14 +10,30 @@ const MultiplayerPageContainer = styled.div`
 `;
 
 const MultiplayerPage = () => {
-  const { data: session } = useSession();
+
   return (
     <MultiplayerPageContainer>
-      <UiPreviousPage href="/" />
-      {session && <Lobby />}
-      {!session && <Sign />}
+      <UiPreviousPage />
+      <Lobby />
     </MultiplayerPageContainer>
   );
 };
+
+export async function getServerSideProps(context: GetSessionParams) {
+  const session = await getSession(context);
+
+  if(!session) {
+    return{
+      redirect: {
+        destination: '/auth',
+        pernament: false,
+      },
+    }
+  }
+
+  return {
+    props: {session}
+  }
+}
 
 export default MultiplayerPage;

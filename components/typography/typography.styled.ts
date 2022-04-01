@@ -12,6 +12,12 @@ export const Text_32 = styled.span(
 	`
 )
 
+export const Text_24 = styled.span(
+	({theme: {fontSizes}}) => `
+		font-size: ${fontSizes[24]}px;
+	`
+)
+
 export const Text_16 = styled.span(
 	({theme: {fontSizes}}) => `
 		font-size: ${fontSizes[16]}px;

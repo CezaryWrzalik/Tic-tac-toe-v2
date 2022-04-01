@@ -18,6 +18,9 @@ const defaultTheme = {
       primary: palette.black,
       secondary: palette.orange,
     },
+    scroll: {
+      primary: palette.gray_transparent,
+    }
   },
   ...global,
 };

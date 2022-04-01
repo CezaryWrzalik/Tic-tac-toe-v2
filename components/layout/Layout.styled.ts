@@ -5,11 +5,11 @@ export const LayoutContainer = styled.div(
   ({theme: {colors} }) => `
   height: 100%;
   display: grid;
-  grid-template: 100px 1fr 100px / 1fr;
+  grid-template: 100px calc(100% - 200px) 100px / 1fr;
   background-color: ${colors.background.primary};
   
   @media (max-height: ${breakpoints.sm}px){
-    grid-template: 30px 1fr 30px / 1fr;
+    grid-template: 30px calc(100% - 60px) 30px / 1fr;
   }
   `
 );

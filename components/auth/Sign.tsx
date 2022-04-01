@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { SignContainer } from "./sign.styled";
-import SignIn from "./signIn";
-import SignUp from "./signUp";
+import { SignContainer } from "./Sign.styled";
+import SignIn from "./SignIn";
+import SignUp from "./SignUp";
 
 export type ToggleType = {
 	toggle: () => void;

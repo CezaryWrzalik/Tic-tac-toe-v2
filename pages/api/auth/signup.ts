@@ -8,6 +8,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     const { username, email, password } = data;
 
+    console.log(username);
+
     if (!username || username.trim().length < 4) {
       res.status(422).json({
         message:

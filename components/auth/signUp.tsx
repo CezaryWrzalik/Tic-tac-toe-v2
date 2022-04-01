@@ -1,22 +1,25 @@
 import { signIn } from "next-auth/react";
+import { useRouter } from "next/router";
 import { FormEvent, useRef } from "react";
 import { useSetRecoilState } from "recoil";
-import { ToggleType } from ".";
 import { notificationState } from "../../atom/notificationState";
+import { Typography } from "../typography";
 import UiButton from "../ui/Ui-Button";
 import UiInput from "../ui/Ui-Input";
+import { ToggleType } from "./Sign";
 import {
   Container,
   InfoContainer,
   InputsContainer,
   SignHeader,
-} from "./sign.styled";
+} from "./Sign.styled";
 
 const SignUp = ({toggle}: ToggleType) => {
   const setNotification = useSetRecoilState(notificationState);
   const usernameRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
+  const router = useRouter();
 
   const createUser = async (e: FormEvent) => {
     e.preventDefault();
@@ -25,10 +28,16 @@ const SignUp = ({toggle}: ToggleType) => {
     const email = emailRef.current?.value;
     const password = passwordRef.current?.value;
 
+    console.log(JSON.stringify({
+      username: user,
+      email,
+      password,
+    }),)
+
     const response = await fetch(`/api/auth/signup`, {
       method: "POST",
       body: JSON.stringify({
-        user,
+        username: user,
         email,
         password,
       }),
@@ -45,13 +54,21 @@ const SignUp = ({toggle}: ToggleType) => {
     }
 
     setNotification(data.message);
-    signIn("credentials", { user, password });
+    signIn("credentials", { user, password })
+    .then((data: any) => {
+      if(data.error){
+        setNotification(data.error);
+      } else {
+        setNotification("Signed in")
+        router.push('./multiplayer');
+      }
+    });
     return data;
   };
 
   return (
     <Container>
-      <SignHeader>Sign Up</SignHeader>
+      <SignHeader><Typography.Text_24>Sign Up</Typography.Text_24></SignHeader>
       <form onSubmit={(e) => createUser(e)}>
         <InputsContainer>
           <UiInput ref={usernameRef} name="username" type="text" />

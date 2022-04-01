@@ -5,7 +5,7 @@ import {
   CloseCotnainer,
   ContentContainer,
   ModalContainer,
-} from "./info-modal.styled";
+} from "./Info-Modal.styled";
 
 type InfoModalProps = {
   active: boolean;

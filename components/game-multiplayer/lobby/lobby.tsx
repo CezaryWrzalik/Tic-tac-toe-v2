@@ -1,22 +1,25 @@
 import { signOut, useSession } from "next-auth/react";
+import { Typography } from "../../typography";
 import UiPreviousPage from "../../ui/Ui-Previouspage";
-import { GamesGrid, LobbyContainer, LogoutButton, PageTitle  } from "./lobby.styled";
-import Sidebar from "./sidebar";
+import {
+  GameItem,
+  GamesGrid,
+  LobbyContainer,
+  LogoutButton,
+  PageTitle,
+} from "./Lobby.styled";
+import Sidebar from "./Sidebar";
 
 const Lobby = () => {
   return (
     <>
-      <UiPreviousPage href="/" />
+      <UiPreviousPage />
       <Sidebar />
       <LobbyContainer>
-        <div>
-          <PageTitle>List of games</PageTitle>
-        </div>
+        <PageTitle><Typography.Text_24>List of games</Typography.Text_24></PageTitle>
         <GamesGrid>
-          <div></div>
+
         </GamesGrid>
-        <div>
-        </div>
         <LogoutButton onClick={() => signOut()}>Sing Out</LogoutButton>
       </LobbyContainer>
     </>

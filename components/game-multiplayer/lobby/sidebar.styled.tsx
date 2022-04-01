@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { commonSideButtonCss } from "../../ui/Ui-Previouspage.styled";
 
 type SidebarProps = {
   visible: boolean;
@@ -20,30 +21,12 @@ export const SidebarContainer = styled.div<SidebarProps>(
 );
 
 export const SvgContainer = styled.div<SidebarProps>(
-  ({ visible, theme: { colors, transitions } }) => `
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	cursor: pointer;
+  ({ visible }) => `
+	${commonSideButtonCss};
 
 	svg {
-		height: 30px;
-		width: 30px;
-		fill: ${colors.text.primary};
 		${visible && `transform: rotateY(-180deg)`};
 	}
-
-	&, svg {
-		transition: ${transitions.default}s;
-	}
-
-	@media (hover: hover) {
-		:hover{
-			background: ${colors.sideButtons.hoverBg};
-		}
-	}
-}
-	
 	`
 );
 
