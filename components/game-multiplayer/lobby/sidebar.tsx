@@ -7,7 +7,7 @@ import {
   StatsList,
   SvgContainer,
   WelcomeMessage,
-} from "./sidebar.styled";
+} from "./Sidebar.styled";
 
 type FetchedDataType = {
   username: string;
