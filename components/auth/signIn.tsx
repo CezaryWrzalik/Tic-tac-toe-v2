@@ -1,21 +1,24 @@
 import { signIn } from "next-auth/react";
+import { useRouter } from "next/router";
 import { FormEvent, useRef } from "react";
 import { useSetRecoilState } from "recoil";
-import { ToggleType } from ".";
-import { notificationState } from "../../../atom/notificationState";
-import UiButton from "../../ui/ui-button";
-import UiInput from "../../ui/ui-input";
+import { notificationState } from "../../atom/notificationState";
+import { Typography } from "../typography";
+import UiButton from "../ui/Ui-Button";
+import UiInput from "../ui/Ui-Input";
+import { ToggleType } from "./Sign";
 import {
   Container,
   InfoContainer,
   InputsContainer,
   SignHeader,
-} from "./sign.styled";
+} from "./Sign.styled";
 
 const SignIn = ({ toggle }: ToggleType) => {
   const setNotification = useSetRecoilState(notificationState);
   const usernameRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
+  const router = useRouter();
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -33,6 +36,7 @@ const SignIn = ({ toggle }: ToggleType) => {
 					setNotification(data.error);
 				} else {
 					setNotification("Signed in")
+          router.push('./multiplayer');
 				}
 			})
   };
@@ -40,7 +44,7 @@ const SignIn = ({ toggle }: ToggleType) => {
   return (
     <>
       <Container>
-        <SignHeader>Sign In</SignHeader>
+        <SignHeader><Typography.Text_24>Sign In</Typography.Text_24></SignHeader>
         <form onSubmit={(e) => handleSubmit(e)}>
           <InputsContainer>
             <UiInput ref={usernameRef} name="username / email" type="text"/>

@@ -2,33 +2,27 @@ import { useRecoilState } from "recoil";
 import { winnerState } from "../../atom/notificationState";
 import CircleIcon from "../icons/circle-icon";
 import CrossIcon from "../icons/cross-icon";
-
-import classes from "./header.module.css";
+import { Typography } from "../typography";
+import { HeaderContainer } from "./Header.styled";
 
 const Header = () => {
   const [winner, setWinner] = useRecoilState(winnerState);
 
   if (winner === "o" || winner === "x") {
     return (
-      <div className={classes.header}>
+      <HeaderContainer>
         {winner === "o" ? <CircleIcon /> : <CrossIcon />}
-        <h1>WINS</h1>
-      </div>
-    );
-  }
-
-  if (winner === "DRAW") {
-    return (
-      <div className={classes.header}>
-        <h1>DRAW</h1>
-      </div>
+        <h1><Typography.Text_32>WINS</Typography.Text_32></h1>
+      </HeaderContainer>
     );
   }
 
   return (
-    <div className={classes.header}>
-      <h1>TIC TAC TOE</h1>
-    </div>
+    <HeaderContainer>
+      <h1>
+        <Typography.Text_32>{winner === "DRAW" ? "draw" : "TIC TAC TOE"}</Typography.Text_32>
+      </h1>
+    </HeaderContainer>
   );
 };
 

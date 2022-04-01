@@ -32,14 +32,15 @@ export const InputsContainer = styled.div`
   }
 `;
 
-export const InfoContainer = styled.div`
-
-
+export const InfoContainer = styled.div(
+  ({ theme: { colors } }) => `
   button {
     margin: 10px 0;
     border: none;
     background: inherit;
-    color: var(--seondary-font-color);
+    color: ${colors.text.secondary};
     cursor: pointer;
   }
-`;
+  
+  `
+);

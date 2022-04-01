@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { notificationState } from "../../atom/notificationState";
-import { NotificationContainer } from "./ui-notification.styled";
+import { NotificationContainer } from "./Ui-Notification.styled";
 
 const UiNotification = () => {
   const [notification, setNotification] = useRecoilState(notificationState);

@@ -2,39 +2,42 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import { useState } from "react";
-import InfoModal from "../components/modal/info-modal";
-import UiButton from "../components/ui/ui-button";
-import classes from "../styles/Home.module.css";
+import InfoModal from "../components/modal/Info-Modal";
+import UiButton from "../components/ui/Ui-Button";
+import { HomePageContainer } from "../shared/styles/Home.styled";
+
+
 
 const Home: NextPage = () => {
   const [modalActive, setModalActive] = useState(false);
 
+  const handleClick = () => {
+    setModalActive(true);
+  }
+
   return (
-    <div className={classes.main}>
+    <>
       <Head>
         <title>Tic tac toe | HOME</title>
       </Head>
-      <Link href="/singleplayer">
-        <a>
-          <UiButton>SINGLEPLAYER</UiButton>
-        </a>
-      </Link>
-      <Link href="/multiplayer">
-        <a>
-          <UiButton>MULTIPLAYER</UiButton>
-        </a>
-      </Link>
-      <a onClick={() => setModalActive(true)}>
-        <UiButton>
-          INFO
-        </UiButton>
-      </a>
 
-      <InfoModal
-        active={modalActive}
-        disableModal={() => setModalActive(false)}
-      />
-    </div>
+      <HomePageContainer>
+        <UiButton>
+          <Link href="/singleplayer">SINGLEPLAYER</Link>
+        </UiButton>
+
+        <UiButton>
+          <Link href="/multiplayer">MULTIPLAYER</Link>
+        </UiButton>
+
+        <UiButton click={() => handleClick()}> INFO</UiButton>
+
+        <InfoModal
+          active={modalActive}
+          disableModal={() => setModalActive(false)}
+        />
+      </HomePageContainer>
+    </>
   );
 };
 

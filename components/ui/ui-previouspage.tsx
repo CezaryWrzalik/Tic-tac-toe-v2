@@ -1,19 +1,13 @@
-import Link from "next/link";
+import { useRouter } from "next/router";
 import ArrowIcon from "../icons/arrow-icon";
+import { UiPreviousPageContainer } from "./Ui-Previouspage.styled";
 
-import classes from "./ui-previouspage.module.css";
-
-type PropsTypes = {
-	href: string;
-}
-
-const UiPreviousPage = ({href}: PropsTypes) => {
+const UiPreviousPage = () => {
+  const router = useRouter();
   return (
-    <Link href={href}>
-      <div className={classes.container}>
-        <ArrowIcon />
-      </div>
-    </Link>
+    <UiPreviousPageContainer onClick={() => router.back()}>
+      <ArrowIcon />
+    </UiPreviousPageContainer>
   );
 };
 

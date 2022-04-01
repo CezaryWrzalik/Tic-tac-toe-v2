@@ -1,19 +1,16 @@
-import classes from "./ui-button.module.css";
+import { Typography } from "../typography";
+import { UiButtonContainer } from "./Ui-Button.styled";
 
 type UiButtonProps = {
   children: string | JSX.Element;
-  unactive?: boolean;
+  click?: () => void;
 };
 
-const UiButton = ({children, unactive}: UiButtonProps) => {
-
-
-  if(unactive === true){
-    return <button className={classes.unactiveButton}>{children}</button>
-  }
-
+const UiButton = ({ children, click }: UiButtonProps) => {
   return (
-    <button className={classes.button}>{children}</button>
+    <UiButtonContainer onClick={() => click ? click() : null}>
+      <Typography.Text_32>{children}</Typography.Text_32>
+    </UiButtonContainer>
   );
 };
 
