@@ -21,19 +21,13 @@ export const UiPreviousPageContainer = styled.div(
 		fill: ${colors.text.primary};
 	}
 
-	& svg {
-		transition: ${transitions.default};
+	&, svg {
+		transition: ${transitions.default}s;
 	}
 
 	@media (hover: hover) {
-		:hover{
-
-			background: ${colors.text.primary};
-			opacity: 0.2;
-			
-			svg {
-				fill: ${colors.background.primary};
-			}
+		:hover {
+			background: ${colors.sideButtons.hoverBg};
 		}
 	}
 	`

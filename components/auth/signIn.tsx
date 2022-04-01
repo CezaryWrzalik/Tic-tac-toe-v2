@@ -2,9 +2,9 @@ import { signIn } from "next-auth/react";
 import { FormEvent, useRef } from "react";
 import { useSetRecoilState } from "recoil";
 import { ToggleType } from ".";
-import { notificationState } from "../../../atom/notificationState";
-import UiButton from "../../ui/ui-button";
-import UiInput from "../../ui/ui-input";
+import { notificationState } from "../../atom/notificationState";
+import UiButton from "../ui/Ui-Button";
+import UiInput from "../ui/Ui-Input";
 import {
   Container,
   InfoContainer,

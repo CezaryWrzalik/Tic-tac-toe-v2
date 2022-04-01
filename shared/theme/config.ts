@@ -2,7 +2,8 @@ export const palette = {
 	light_yellow: '#e0dfd5',
 	black: '#313638',
 	orange: '#db9614',
-  gray_transparent: 'rgba(184, 184, 184, 0.8)'
+  gray_transparent: 'rgba(184, 184, 184, 0.8)',
+  gray_dark_transparent: 'rgba(150, 150, 150, 0.8)'
 };
 
 export const global = {

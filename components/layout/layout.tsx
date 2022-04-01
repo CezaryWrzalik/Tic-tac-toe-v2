@@ -1,4 +1,4 @@
-import UiNotification from "../ui/ui-notification";
+import UiNotification from "../ui/Ui-Notification";
 import Header from "./Header";
 import { Typography } from "../typography";
 import { Footer, LayoutContainer, Main } from "./Layout.styled";

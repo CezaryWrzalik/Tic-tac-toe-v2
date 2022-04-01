@@ -3,7 +3,7 @@ import { useRecoilState, useSetRecoilState } from "recoil";
 import { notificationState, winnerState } from "../../atom/notificationState";
 import Board from "./Board";
 import Switch from "./Switch";
-import UiButton from "../ui/ui-button";
+import UiButton from "../ui/Ui-Button";
 import UiPreviousPage from "../ui/Ui-Previouspage";
 import { checkIfMovesLeft, evaluate } from "../../utils/evaluation";
 import { findBestMove } from "../../utils/minimax";
@@ -71,7 +71,6 @@ const SingleplayerGame = () => {
   };
 
   const aiStart = () => {
-    console.log("hhhh");
     if (!gameStarted) {
       setPlayer("o");
       setOpponent("x");

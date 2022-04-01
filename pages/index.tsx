@@ -3,7 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { useState } from "react";
 import InfoModal from "../components/modal/info-modal";
-import UiButton from "../components/ui/ui-button";
+import UiButton from "../components/ui/Ui-Button";
 import { HomePageContainer } from "../shared/styles/Home.styled";
 
 

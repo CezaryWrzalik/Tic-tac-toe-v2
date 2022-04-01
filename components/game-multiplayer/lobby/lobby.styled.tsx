@@ -15,10 +15,14 @@ export const GamesGrid = styled.div`
 
 export const GameItem = styled.div``;
 
-export const LogoutButton = styled.button`
+export const LogoutButton = styled.button(
+  ({ theme: { colors } }) => `
+
   margin: 10px 0;
   border: none;
-  background: inherit;
-  color: var(--seondary-font-color);
+  background: ${colors.background.primary};
+  color: ${colors.text.primary};
   cursor: pointer;
-`;
+
+`
+);

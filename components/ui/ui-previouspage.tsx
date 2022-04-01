@@ -1,6 +1,6 @@
 import Link from "next/link";
 import ArrowIcon from "../icons/arrow-icon";
-import { UiPreviousPageContainer } from "./ui-previouspage.styled";
+import { UiPreviousPageContainer } from "./Ui-Previouspage.styled";
 
 type PropsTypes = {
   href: string;

@@ -1,5 +1,5 @@
 import { Typography } from "../typography";
-import { UiButtonContainer } from "./ui-button.styled";
+import { UiButtonContainer } from "./Ui-Button.styled";
 
 type UiButtonProps = {
   children: string | JSX.Element;

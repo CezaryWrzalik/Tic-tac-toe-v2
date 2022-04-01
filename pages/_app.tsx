@@ -2,7 +2,7 @@ import type { AppProps } from "next/app";
 import { RecoilRoot } from "recoil";
 import { SessionProvider } from "next-auth/react";
 import { ThemeProvider } from "styled-components";
-import Layout from "../components/Layout/Layout";
+import Layout from "../components/layout/Layout";
 import { Theme } from "../types/CommonTypes";
 import themeVariant from "../utils/themeVariant";
 import { GlobalStyled } from "../shared/theme/GlobalStyles.styled";

@@ -7,7 +7,7 @@ export type ToggleType = {
 	toggle: () => void;
 }
 
-const Sign = () => {
+const Auth = () => {
 	const [isRegister, setIsRegister] = useState(false);
 
 	const toggleRegister = () => {
@@ -22,4 +22,4 @@ const Sign = () => {
 	)
 }
 
-export default Sign;
+export default Auth;

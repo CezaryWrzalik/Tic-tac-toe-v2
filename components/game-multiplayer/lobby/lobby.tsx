@@ -1,5 +1,5 @@
 import { signOut, useSession } from "next-auth/react";
-import UiPreviousPage from "../../ui/ui-previouspage";
+import UiPreviousPage from "../../ui/Ui-Previouspage";
 import { GamesGrid, LobbyContainer, LogoutButton, PageTitle  } from "./lobby.styled";
 import Sidebar from "./sidebar";
 
