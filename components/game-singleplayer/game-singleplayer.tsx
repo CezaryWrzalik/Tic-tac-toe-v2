@@ -133,7 +133,6 @@ const SingleplayerGame = () => {
 
   return (
     <>
-      <UiPreviousPage href="/" />
       <SingleplayerContainer>
         <SwitchContainer side="left">
           <Typography.Text_32>TURN</Typography.Text_32>

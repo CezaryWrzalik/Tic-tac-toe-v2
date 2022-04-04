@@ -6,7 +6,6 @@ import Layout from "../components/layout/Layout";
 import { Theme } from "../types/CommonTypes";
 import themeVariant from "../utils/themeVariant";
 import { GlobalStyled } from "../shared/theme/GlobalStyles.styled";
-// import "../shared/styles/globals.css";
 
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {

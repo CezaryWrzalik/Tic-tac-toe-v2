@@ -6,7 +6,6 @@ export const commonSideButtonCss = css(
 	display: flex;
 	justify-content: center;
 	align-items: center;
-  height: 100%;
   width: 50px;
   cursor: pointer;
   z-index: 1;

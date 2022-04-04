@@ -13,17 +13,9 @@ export const PageTitle = styled.p``;
 
 export const GamesGrid = styled.div`
   display: grid;
+  grid-template: repeat(10, 50px) / 1fr;
   overflow-Y: scroll;
   height: 80%;
-`;
-
-export const GameItem = styled.div`
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  border-bottom: 1px solid black;
-  height: 50px;
-  padding: 0 20px;
 `;
 
 export const LogoutButton = styled.button(

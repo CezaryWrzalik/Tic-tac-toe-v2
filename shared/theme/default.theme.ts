@@ -5,6 +5,7 @@ const defaultTheme = {
     background: {
       primary: palette.light_yellow,
       secondary: palette.gray_transparent,
+      hoverBg: palette.gray_dark_transparent,
     },
     sideButtons: {
       primaryBg: palette.light_yellow,

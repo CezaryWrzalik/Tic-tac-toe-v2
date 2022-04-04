@@ -27,7 +27,7 @@ const Home: NextPage = () => {
         </UiButton>
 
         <UiButton>
-          <Link href="/multiplayer">MULTIPLAYER</Link>
+          <Link href="/">MULTIPLAYER</Link>
         </UiButton>
 
         <UiButton click={() => handleClick()}> INFO</UiButton>

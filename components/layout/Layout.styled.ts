@@ -7,6 +7,7 @@ export const LayoutContainer = styled.div(
   display: grid;
   grid-template: 100px calc(100% - 200px) 100px / 1fr;
   background-color: ${colors.background.primary};
+  position: relative;
   
   @media (max-height: ${breakpoints.sm}px){
     grid-template: 30px calc(100% - 60px) 30px / 1fr;

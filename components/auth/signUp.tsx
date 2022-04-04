@@ -28,12 +28,6 @@ const SignUp = ({toggle}: ToggleType) => {
     const email = emailRef.current?.value;
     const password = passwordRef.current?.value;
 
-    console.log(JSON.stringify({
-      username: user,
-      email,
-      password,
-    }),)
-
     const response = await fetch(`/api/auth/signup`, {
       method: "POST",
       body: JSON.stringify({

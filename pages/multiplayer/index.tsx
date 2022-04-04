@@ -1,8 +1,6 @@
 import { getSession, GetSessionParams } from "next-auth/react";
-import { ContextType } from "react";
 import styled from "styled-components";
 import Lobby from "../../components/game-multiplayer/lobby/Lobby";
-import UiPreviousPage from "../../components/ui/Ui-Previouspage";
 
 const MultiplayerPageContainer = styled.div`
   position: relative;
@@ -13,7 +11,6 @@ const MultiplayerPage = () => {
 
   return (
     <MultiplayerPageContainer>
-      <UiPreviousPage />
       <Lobby />
     </MultiplayerPageContainer>
   );
