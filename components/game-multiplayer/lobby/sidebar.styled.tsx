@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { commonSideButtonCss } from "../../ui/Ui-Previouspage.styled";
 
 type SidebarProps = {
@@ -8,7 +8,7 @@ type SidebarProps = {
 export const WelcomeMessage = styled.h3``;
 
 export const SidebarContainer = styled.div<SidebarProps>(
-  ({ visible, theme: { colors,transitions } }) => `
+  ({ visible, theme: { transitions } }) => `
   display: grid;
   grid-template: 1fr / 50px 1fr;
   height: 100%;
@@ -17,12 +17,11 @@ export const SidebarContainer = styled.div<SidebarProps>(
   right: ${visible ? "0" : "-200px"};
 	transition: ${transitions.default}s;
 	text-align: center;
-  background: ${colors.background.primary};
 	`
 );
 
 export const SvgContainer = styled.div<SidebarProps>(
-  ({ visible }) => css`
+  ({ visible }) => `
 	${commonSideButtonCss};
 
 	svg {

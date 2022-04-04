@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import { notificationState, winnerState } from "../../atom/notificationState";
 import Board from "./Board";
 import Switch from "./Switch";
@@ -133,6 +133,7 @@ const SingleplayerGame = () => {
 
   return (
     <>
+      <UiPreviousPage href="/" />
       <SingleplayerContainer>
         <SwitchContainer side="left">
           <Typography.Text_32>TURN</Typography.Text_32>

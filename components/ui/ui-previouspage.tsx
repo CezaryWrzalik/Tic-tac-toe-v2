@@ -4,15 +4,10 @@ import { UiPreviousPageContainer } from "./Ui-Previouspage.styled";
 
 const UiPreviousPage = () => {
   const router = useRouter();
-
   return (
-    <>
-      {router.pathname !== "/" && (
-        <UiPreviousPageContainer onClick={() => router.back()}>
-          <ArrowIcon />
-        </UiPreviousPageContainer>
-      )}
-    </>
+    <UiPreviousPageContainer onClick={() => router.back()}>
+      <ArrowIcon />
+    </UiPreviousPageContainer>
   );
 };
 

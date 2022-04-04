@@ -1,4 +1,5 @@
 import React from "react";
+import classes from './ui-input.module.css'
 import { UiInputContainer } from "./Ui-Input.styled";
 
 type PropsType = {
