@@ -1,7 +1,6 @@
 import { NextPage } from "next";
 import Head from "next/head";
-import SingleplayerGame from "../../components/game-singleplayer/Game-singleplayer";
-import { SinglePlayerContainer } from "../../shared/styles/Singleplayer.styled";
+import SingleplayerGame from "../../components/game-singleplayer/game-singleplayer";
 
 const SinglePlayerPage: NextPage = () => {
   return (

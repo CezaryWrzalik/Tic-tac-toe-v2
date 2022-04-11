@@ -2,11 +2,10 @@ import type { AppProps } from "next/app";
 import { RecoilRoot } from "recoil";
 import { SessionProvider } from "next-auth/react";
 import { ThemeProvider } from "styled-components";
-import Layout from "../components/layout/Layout";
+import Layout from "../components/Layout/layout";
 import { Theme } from "../types/CommonTypes";
 import themeVariant from "../utils/themeVariant";
 import { GlobalStyled } from "../shared/theme/GlobalStyles.styled";
-// import "../shared/styles/globals.css";
 
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {

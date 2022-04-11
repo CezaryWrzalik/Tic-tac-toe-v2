@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import { notificationState, winnerState } from "../../atom/notificationState";
-import Board from "./Board";
-import Switch from "./Switch";
-import UiButton from "../ui/Ui-Button";
-import UiPreviousPage from "../ui/Ui-Previouspage";
+import Board from "./board";
+import Switch from "./switch";
+import UiButton from "../ui/ui-button";
+import UiPreviousPage from "../ui/ui-previouspage";
 import { checkIfMovesLeft, evaluate } from "../../utils/evaluation";
 import { findBestMove } from "../../utils/minimax";
 
@@ -133,7 +133,7 @@ const SingleplayerGame = () => {
 
   return (
     <>
-      <UiPreviousPage href="/" />
+      <UiPreviousPage />
       <SingleplayerContainer>
         <SwitchContainer side="left">
           <Typography.Text_32>TURN</Typography.Text_32>

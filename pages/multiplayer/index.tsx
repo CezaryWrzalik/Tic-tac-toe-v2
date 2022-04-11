@@ -1,8 +1,7 @@
 import { getSession, GetSessionParams } from "next-auth/react";
-import { ContextType } from "react";
 import styled from "styled-components";
-import Lobby from "../../components/game-multiplayer/lobby/Lobby";
-import UiPreviousPage from "../../components/ui/Ui-Previouspage";
+import Lobby from "../../components/game-multiplayer/lobby/lobby";
+import UiPreviousPage from "../../components/ui/ui-previouspage";
 
 const MultiplayerPageContainer = styled.div`
   position: relative;
