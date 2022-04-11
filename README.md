@@ -8,7 +8,7 @@ App was created to practice Next.js and Recoil
 
 ### What u can find in this app
 For now application alows us to play a game against our Friend on one device or against Ai.
-Project is currently suspended => in the future there is a plan to add an Multiplayer mode using Socket.io but due to limited requests on MondoDB cluster.
+Project is currently suspended => in the future there is a plan to add an Multiplayer mode using Socket.io but due to limited requests on MondoDB cluster i had to stop working on this project for a while probably with different data base. In the latest commit i added NextAuth for SignIn/Up.
 
 #### How to play AgainstAi
 1. Go to the Singleplayer mode 
@@ -16,6 +16,7 @@ Project is currently suspended => in the future there is a plan to add an Multip
 3. But if u want to let the Ai start then u have to click on the Circle icon before the games start.
 
 ### Technologies
+- Next.js
 - Typescript
 - Node.JS
 - Styled-components
