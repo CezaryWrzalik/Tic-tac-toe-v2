@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { commonSideButtonCss } from "../../ui/Ui-Previouspage.styled";
 
 type SidebarProps = {
@@ -21,7 +21,7 @@ export const SidebarContainer = styled.div<SidebarProps>(
 );
 
 export const SvgContainer = styled.div<SidebarProps>(
-  ({ visible }) => `
+  ({ visible }) => css`
 	${commonSideButtonCss};
 
 	svg {

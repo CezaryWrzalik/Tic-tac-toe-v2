@@ -1,11 +1,18 @@
-import { getSession, GetSessionParams } from "next-auth/react";
+import { getSession, GetSessionParams, useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 import Auth from "../../components/auth/Sign";
-import UiPreviousPage from "../../components/ui/ui-previouspage";
+
+
 
 const AuthPage = () => {
+  const router = useRouter();
+  const { data: session } = useSession()
+  if(session){
+    console.log('heyyy');
+    router.push('./multiplayer')
+  }
   return (
     <>
-      <UiPreviousPage />
       <Auth />;
     </>
   );

@@ -12,7 +12,6 @@ const MultiplayerPage = () => {
 
   return (
     <MultiplayerPageContainer>
-      <UiPreviousPage />
       <Lobby />
     </MultiplayerPageContainer>
   );

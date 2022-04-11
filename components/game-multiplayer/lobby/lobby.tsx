@@ -13,7 +13,6 @@ import Sidebar from "./sidebar";
 const Lobby = () => {
   return (
     <>
-      <UiPreviousPage />
       <Sidebar />
       <LobbyContainer>
         <PageTitle><Typography.Text_24>List of games</Typography.Text_24></PageTitle>
