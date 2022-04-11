@@ -1,14 +1,14 @@
-import { signOut, useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
 import { Typography } from "../../typography";
-import UiPreviousPage from "../../ui/Ui-Previouspage";
+import UiPreviousPage from "../../ui/ui-previouspage";
 import {
   GameItem,
   GamesGrid,
   LobbyContainer,
   LogoutButton,
   PageTitle,
-} from "./Lobby.styled";
-import Sidebar from "./Sidebar";
+} from "./lobby.styled";
+import Sidebar from "./sidebar";
 
 const Lobby = () => {
   return (

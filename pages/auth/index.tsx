@@ -1,6 +1,6 @@
 import { getSession, GetSessionParams } from "next-auth/react";
 import Auth from "../../components/auth/Sign";
-import UiPreviousPage from "../../components/ui/Ui-Previouspage";
+import UiPreviousPage from "../../components/ui/ui-previouspage";
 
 const AuthPage = () => {
   return (

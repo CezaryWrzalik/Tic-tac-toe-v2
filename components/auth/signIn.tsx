@@ -4,15 +4,15 @@ import { FormEvent, useRef } from "react";
 import { useSetRecoilState } from "recoil";
 import { notificationState } from "../../atom/notificationState";
 import { Typography } from "../typography";
-import UiButton from "../ui/Ui-Button";
-import UiInput from "../ui/Ui-Input";
+import UiButton from "../ui/ui-button";
+import UiInput from "../ui/ui-input";
 import { ToggleType } from "./Sign";
 import {
   Container,
   InfoContainer,
   InputsContainer,
   SignHeader,
-} from "./Sign.styled";
+} from "./sign.styled";
 
 const SignIn = ({ toggle }: ToggleType) => {
   const setNotification = useSetRecoilState(notificationState);

@@ -1,4 +1,4 @@
-import Field from "./Field";
+import Field from "./field";
 import { BoardContainer, BoardGrid } from "./Board.styled";
 
 type PropsType = {
