@@ -36,3 +36,7 @@ https://tic-tac-toe-v2-eight.vercel.app/
 2. Install all packages by npm -i or yarn install
 3. Then u can run it by npm run dev or yarn
 
+
+
+## Overall
+With the commit updating mongo cluster some files decided to change from capitalize to lowercase. :>
